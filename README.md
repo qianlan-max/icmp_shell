@@ -33,7 +33,7 @@ go build -o icmpsh_cli ./cmd/shell/
 
 
 ## <font style="color:rgb(13, 18, 57);">🚀</font><font style="color:rgb(13, 18, 57);"> 快速上手</font>
-+ **<font style="color:rgb(13, 18, 57);">攻击机</font>**<font style="color:rgb(13, 18, 57);">: 控制主机 (C2)，IP地址为 </font>`<font style="color:rgb(13, 18, 57);">111.111.111.11</font>`<font style="color:rgb(13, 18, 57);">，在此主机运行服务端。</font>
++ **<font style="color:rgb(13, 18, 57);">攻击机</font>**<font style="color:rgb(13, 18, 57);">: 控制主机 (C2)，IP地址为 </font>`<font style="background-color:#D8DAD9;">111.111.111.11</font>`<font style="color:rgb(13, 18, 57);">，在此主机运行服务端。</font>
 + **<font style="color:rgb(13, 18, 57);">目标机</font>**<font style="color:rgb(13, 18, 57);">: 在此主机上运行客户端。</font>
 
 <font style="color:rgb(13, 18, 57);"></font>
@@ -107,7 +107,7 @@ go build -o icmpsh_cli ./cmd/shell/
 | `<font style="color:rgb(0, 0, 0);">--mtu</font>` | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">576</font> | <font style="color:rgb(0, 0, 0);">（会话/信标模式）定义单包最大载荷，最小为64。</font> |
 
 
-### <font style="color:rgb(13, 18, 57);">客户端 (</font>`<font style="color:rgb(13, 18, 57);">icmpsh_cli</font>`<font style="color:rgb(13, 18, 57);">)</font>
+### 客户端 (`icmpsh_cli`)
 <font style="color:rgb(255, 255, 255);">全屏</font><font style="color:rgb(255, 255, 255);">复制</font>
 
 | **<font style="color:rgb(255, 255, 255);">参数</font>** | **<font style="color:rgb(255, 255, 255);">别名</font>** | **<font style="color:rgb(255, 255, 255);">类型</font>** | **<font style="color:rgb(255, 255, 255);">默认值</font>** | **<font style="color:rgb(255, 255, 255);">描述</font>** |
