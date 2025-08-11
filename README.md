@@ -99,7 +99,7 @@ go build -o icmpsh_cli ./cmd/shell/
 | <font style="color:rgb(0, 0, 0);">--filetrans</font> | <font style="color:rgb(0, 0, 0);">-ft</font> | <font style="color:rgb(0, 0, 0);">bool</font> | <font style="color:rgb(0, 0, 0);">false</font> | <font style="color:rgb(0, 0, 0);">启动文件接收模式。此模式下，其他模式和加密参数无效。</font> |
 | <font style="color:rgb(0, 0, 0);">--mode</font> | <font style="color:rgb(0, 0, 0);">-m</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"session"</font> | <font style="color:rgb(0, 0, 0);">运行模式，可选: session (实时会话) 或 beacon (信标)。</font> |
 | <font style="color:rgb(0, 0, 0);">--crypto-mode</font> | <font style="color:rgb(0, 0, 0);">-cm</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"none"</font> | <font style="color:rgb(0, 0, 0);">载荷加密/编码模式，可选: aes, xor, base64, base32, none。</font> |
-| <font style="color:rgb(0, 0, 0);">--mtu</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">576</font> | <font style="color:rgb(0, 0, 0);">(会话/信标模式) 定义单包最大载荷，最小为64。</font> |
+| <font style="color:rgb(0, 0, 0);">--mtu</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">666</font> | <font style="color:rgb(0, 0, 0);">(会话/信标模式) 定义单包最大载荷，最小为40。</font> |
 
 
 ### <font style="color:rgb(13, 18, 57);">客户端 (icmpsh_cli)</font>
@@ -113,7 +113,7 @@ go build -o icmpsh_cli ./cmd/shell/
 | <font style="color:rgb(0, 0, 0);">--filetrans-hide</font> | <font style="color:rgb(0, 0, 0);">-fth</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">""</font> | <font style="color:rgb(0, 0, 0);">隐藏文件传输模式，值为要发送的文件路径。与 --ft 及其他模式互斥。</font> |
 | <font style="color:rgb(0, 0, 0);">--mode</font> | <font style="color:rgb(0, 0, 0);">-m</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"session"</font> | <font style="color:rgb(0, 0, 0);">运行模式，session 或 beacon。</font> |
 | <font style="color:rgb(0, 0, 0);">--crypto-mode</font> | <font style="color:rgb(0, 0, 0);">-cm</font> | <font style="color:rgb(0, 0, 0);">string</font> | <font style="color:rgb(0, 0, 0);">"none"</font> | <font style="color:rgb(0, 0, 0);">加密/编码模式，必须与服务端匹配。</font> |
-| <font style="color:rgb(0, 0, 0);">--mtu</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">576</font> | <font style="color:rgb(0, 0, 0);">定义单包最大载荷，最小为64。</font> |
+| <font style="color:rgb(0, 0, 0);">--mtu</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">666</font> | <font style="color:rgb(0, 0, 0);">定义单包最大载荷，最小为40。</font> |
 | <font style="color:rgb(0, 0, 0);">--interval</font> | | <font style="color:rgb(0, 0, 0);">int</font> | <font style="color:rgb(0, 0, 0);">1</font> | <font style="color:rgb(0, 0, 0);">发包的时间间隔，单位为秒，最小为1。</font> |
 | <font style="color:rgb(0, 0, 0);">--icmpId</font> | | <font style="color:rgb(0, 0, 0);">uint</font> | <font style="color:rgb(0, 0, 0);">1000</font> | <font style="color:rgb(0, 0, 0);">通信所使用的ICMP ID。</font> |
 
