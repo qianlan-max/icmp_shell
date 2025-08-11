@@ -1,5 +1,7 @@
 ICMP隧道远控工具。
 
+公众号文章：https://mp.weixin.qq.com/s/N1qZ1mAQLB-r6xQ1f6E-DA
+
 ---
 
 ## ✨ 功能说明
